@@ -842,6 +842,7 @@
       "fieldConfig": {
         "defaults": {
           "custom": {
+            "align": "auto",
             "cellOptions": {
               "mode": "gradient",
               "type": "color-background"
@@ -1261,7 +1262,10 @@
   "refresh": "",
   "schemaVersion": 38,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "SpeedFlux",
+    "Influxdb"
+  ],
   "templating": {
     "list": []
   },
@@ -1286,6 +1290,6 @@
   "timezone": "",
   "title": "SpeedTests by SpeedFlux",
   "uid": "kLXTiedGz",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }

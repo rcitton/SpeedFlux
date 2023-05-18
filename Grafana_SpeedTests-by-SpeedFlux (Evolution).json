@@ -3182,7 +3182,10 @@
   "refresh": "",
   "schemaVersion": 38,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "SpeedFlux",
+    "influxdb"
+  ],
   "templating": {
     "list": [
       {
@@ -3231,6 +3234,6 @@
   "timezone": "",
   "title": "SpeedTests by SpeedFlux (Evolution)",
   "uid": "Sp33dFlux3v0",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
