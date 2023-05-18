@@ -1,25 +1,26 @@
 {
   "__inputs": [
     {
-      "name": "DS_INFLUXDB-SPEEDTESTS",
-      "label": "InfluxDB-speedtests",
+      "name": "DS_SPEEDFLUX",
+      "label": "SpeedFlux",
       "description": "",
       "type": "datasource",
       "pluginId": "influxdb",
       "pluginName": "InfluxDB"
     }
   ],
+  "__elements": {},
   "__requires": [
     {
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "7.3.6"
+      "version": "9.5.2"
     },
     {
       "type": "panel",
       "id": "graph",
-      "name": "Graph",
+      "name": "Graph (old)",
       "version": ""
     },
     {
@@ -45,7 +46,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -56,21 +60,24 @@
   },
   "description": "A dashboard to display speedtest data over time.",
   "editable": true,
+  "fiscalYearStartMonth": 0,
   "gnetId": 13053,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1611279295418,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
-      "datasource": "${DS_INFLUXDB-SPEEDTESTS}",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_SPEEDFLUX}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "fixedColor": "semi-dark-blue",
             "mode": "fixed"
           },
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -115,9 +122,13 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "9.5.2",
       "targets": [
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [
             {
               "params": [
@@ -154,8 +165,6 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Avg Download Speed",
       "type": "stat"
     },
@@ -164,14 +173,11 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB-SPEEDTESTS}",
-      "description": "Uses https://github.com/breadlysm/speedtest-to-influxdb",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_SPEEDFLUX}"
       },
+      "description": "Uses https://github.com/breadlysm/speedtest-to-influxdb",
       "fill": 1,
       "fillGradient": 3,
       "gridPos": {
@@ -201,7 +207,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "9.5.2",
       "pointradius": 0.5,
       "points": true,
       "renderer": "flot",
@@ -221,6 +227,10 @@
       "targets": [
         {
           "alias": "Download",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [
             {
               "params": [
@@ -260,6 +270,10 @@
         },
         {
           "alias": "Upload",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [
             {
               "params": [
@@ -299,9 +313,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Speedtest Results",
       "tooltip": {
         "shared": true,
@@ -310,44 +322,37 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "Mbits",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
-      "datasource": "${DS_INFLUXDB-SPEEDTESTS}",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_SPEEDFLUX}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "fixedColor": "semi-dark-yellow",
             "mode": "fixed"
           },
-          "custom": {},
           "decimals": 2,
           "mappings": [],
           "thresholds": {
@@ -393,9 +398,13 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "9.5.2",
       "targets": [
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [
             {
               "params": [
@@ -432,20 +441,20 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Avg Test Time",
       "type": "stat"
     },
     {
-      "datasource": "${DS_INFLUXDB-SPEEDTESTS}",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_SPEEDFLUX}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "fixedColor": "semi-dark-purple",
             "mode": "fixed"
           },
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -490,9 +499,13 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "9.5.2",
       "targets": [
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [
             {
               "params": [
@@ -529,16 +542,16 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Avg Upload Speed",
       "type": "stat"
     },
     {
-      "datasource": "${DS_INFLUXDB-SPEEDTESTS}",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_SPEEDFLUX}"
+      },
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -575,9 +588,13 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "9.5.2",
       "targets": [
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [
             {
               "params": [
@@ -614,13 +631,14 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Total Test Downloaded",
       "type": "stat"
     },
     {
-      "datasource": "${DS_INFLUXDB-SPEEDTESTS}",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_SPEEDFLUX}"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -628,7 +646,6 @@
             "fixedColor": "semi-dark-yellow",
             "mode": "fixed"
           },
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -673,9 +690,13 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "9.5.2",
       "targets": [
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [
             {
               "params": [
@@ -712,16 +733,16 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Avg Test Latency",
       "type": "stat"
     },
     {
-      "datasource": "${DS_INFLUXDB-SPEEDTESTS}",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_SPEEDFLUX}"
+      },
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -758,9 +779,13 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "9.5.2",
       "targets": [
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [
             {
               "params": [
@@ -797,13 +822,14 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Total Test Uploaded",
       "type": "stat"
     },
     {
-      "datasource": "${DS_INFLUXDB-SPEEDTESTS}",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_SPEEDFLUX}"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -811,8 +837,9 @@
             "fixedColor": "dark-green",
             "mode": "fixed"
           },
-          "custom": {},
           "mappings": [],
+          "max": 1,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -848,9 +875,13 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "9.5.2",
       "targets": [
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [
             {
               "params": [
@@ -888,8 +919,6 @@
           "tz": ""
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Uptime",
       "type": "stat"
     },
@@ -903,14 +932,11 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_INFLUXDB-SPEEDTESTS}",
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_SPEEDFLUX}"
       },
+      "description": "",
       "fill": 1,
       "fillGradient": 3,
       "gridPos": {
@@ -941,7 +967,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "9.5.2",
       "pointradius": 0.5,
       "points": true,
       "renderer": "flot",
@@ -965,6 +991,10 @@
       "targets": [
         {
           "alias": "Uptime",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [
             {
               "params": [
@@ -1005,6 +1035,10 @@
         },
         {
           "alias": "Latency",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [
             {
               "params": [
@@ -1044,6 +1078,10 @@
         },
         {
           "alias": "",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [
             {
               "params": [
@@ -1096,9 +1134,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "High Frequency Ping Results",
       "tooltip": {
         "shared": true,
@@ -1107,24 +1143,19 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
-          "decimals": null,
           "format": "ms",
-          "label": null,
           "logBase": 2,
           "max": "256",
           "min": "4",
           "show": true
         },
         {
-          "decimals": null,
           "format": "percentunit",
           "label": "",
           "logBase": 1,
@@ -1134,12 +1165,14 @@
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
-      "datasource": "${DS_INFLUXDB-SPEEDTESTS}",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_SPEEDFLUX}"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1147,7 +1180,6 @@
             "fixedColor": "semi-dark-yellow",
             "mode": "fixed"
           },
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1192,9 +1224,13 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "9.5.2",
       "targets": [
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [
             {
               "params": [
@@ -1233,14 +1269,15 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Avg Ping Latency",
       "type": "stat"
     },
     {
       "collapsed": false,
-      "datasource": null,
+      "datasource": {
+        "type": "influxdb",
+        "uid": "ZjswvQiRk"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1249,17 +1286,33 @@
       },
       "id": 137,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "ZjswvQiRk"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Leaders (Green) & Laggers (Yellow)",
       "type": "row"
     },
     {
-      "datasource": "${DS_INFLUXDB-SPEEDTESTS}",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_SPEEDFLUX}"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
           "custom": {
             "align": "center",
-            "filterable": false
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "inspect": false
           },
           "mappings": [],
           "thresholds": {
@@ -1311,8 +1364,11 @@
                 }
               },
               {
-                "id": "custom.displayMode",
-                "value": "color-background"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
               }
             ]
           }
@@ -1326,13 +1382,26 @@
       },
       "id": 127,
       "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "frameIndex": 0,
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "9.5.2",
       "targets": [
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [],
           "hide": false,
           "measurement": "download",
@@ -1371,6 +1440,10 @@
           ]
         },
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [
             {
               "params": [
@@ -1410,6 +1483,10 @@
           ]
         },
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [
             {
               "params": [
@@ -1464,9 +1541,6 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "",
       "transformations": [
         {
           "id": "merge",
@@ -1506,13 +1580,20 @@
       "type": "table"
     },
     {
-      "datasource": "${DS_INFLUXDB-SPEEDTESTS}",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_SPEEDFLUX}"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
           "custom": {
             "align": "center",
-            "filterable": false
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "inspect": false
           },
           "mappings": [],
           "thresholds": {
@@ -1564,8 +1645,11 @@
                 }
               },
               {
-                "id": "custom.displayMode",
-                "value": "color-background"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
               }
             ]
           }
@@ -1579,13 +1663,26 @@
       },
       "id": 134,
       "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "frameIndex": 0,
         "showHeader": false,
         "sortBy": []
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "9.5.2",
       "targets": [
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [],
           "hide": false,
           "measurement": "ping",
@@ -1637,6 +1734,10 @@
           ]
         },
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [
             {
               "params": [
@@ -1678,6 +1779,10 @@
           ]
         },
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [
             {
               "params": [
@@ -1717,9 +1822,6 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "",
       "transformations": [
         {
           "id": "merge",
@@ -1759,13 +1861,20 @@
       "type": "table"
     },
     {
-      "datasource": "${DS_INFLUXDB-SPEEDTESTS}",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_SPEEDFLUX}"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
           "custom": {
             "align": "center",
-            "filterable": false
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "inspect": false
           },
           "mappings": [],
           "thresholds": {
@@ -1817,8 +1926,11 @@
                 }
               },
               {
-                "id": "custom.displayMode",
-                "value": "color-background"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
               }
             ]
           }
@@ -1832,13 +1944,26 @@
       },
       "id": 131,
       "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "frameIndex": 0,
         "showHeader": false,
         "sortBy": []
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "9.5.2",
       "targets": [
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [],
           "hide": false,
           "measurement": "download",
@@ -1877,6 +2002,10 @@
           ]
         },
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [
             {
               "params": [
@@ -1916,6 +2045,10 @@
           ]
         },
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [
             {
               "params": [
@@ -1970,9 +2103,6 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "",
       "transformations": [
         {
           "id": "merge",
@@ -2012,13 +2142,20 @@
       "type": "table"
     },
     {
-      "datasource": "${DS_INFLUXDB-SPEEDTESTS}",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_SPEEDFLUX}"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
           "custom": {
             "align": "center",
-            "filterable": false
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "inspect": false
           },
           "mappings": [],
           "thresholds": {
@@ -2070,8 +2207,11 @@
                 }
               },
               {
-                "id": "custom.displayMode",
-                "value": "color-background"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
               }
             ]
           }
@@ -2085,13 +2225,26 @@
       },
       "id": 135,
       "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "frameIndex": 0,
         "showHeader": false,
         "sortBy": []
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "9.5.2",
       "targets": [
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [],
           "hide": false,
           "measurement": "ping",
@@ -2143,6 +2296,10 @@
           ]
         },
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [
             {
               "params": [
@@ -2184,6 +2341,10 @@
           ]
         },
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [
             {
               "params": [
@@ -2223,9 +2384,6 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "",
       "transformations": [
         {
           "id": "merge",
@@ -2266,7 +2424,10 @@
     },
     {
       "collapsed": false,
-      "datasource": "${DS_INFLUXDB-SPEEDTESTS}",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "ec24c11c-77dd-4d66-af50-c1017c112340"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2275,18 +2436,34 @@
       },
       "id": 108,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "ec24c11c-77dd-4d66-af50-c1017c112340"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Averages by Test Server",
       "type": "row"
     },
     {
-      "datasource": "${DS_INFLUXDB-SPEEDTESTS}",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_SPEEDFLUX}"
+      },
       "description": "Shows the avg speeds received by test site",
       "fieldConfig": {
         "defaults": {
           "custom": {
             "align": "center",
-            "displayMode": "color-background",
-            "filterable": false
+            "cellOptions": {
+              "mode": "gradient",
+              "type": "color-background"
+            },
+            "filterable": false,
+            "inspect": false
           },
           "mappings": [],
           "thresholds": {
@@ -2332,8 +2509,11 @@
                 }
               },
               {
-                "id": "custom.displayMode",
-                "value": "gradient-gauge"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge"
+                }
               },
               {
                 "id": "max",
@@ -2355,8 +2535,11 @@
                 "value": "none"
               },
               {
-                "id": "custom.displayMode",
-                "value": "gradient-gauge"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge"
+                }
               },
               {
                 "id": "max",
@@ -2375,8 +2558,10 @@
             },
             "properties": [
               {
-                "id": "custom.displayMode",
-                "value": "color-text"
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
               },
               {
                 "id": "custom.width",
@@ -2395,8 +2580,11 @@
             },
             "properties": [
               {
-                "id": "custom.displayMode",
-                "value": "gradient-gauge"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge"
+                }
               },
               {
                 "id": "thresholds",
@@ -2430,8 +2618,11 @@
             },
             "properties": [
               {
-                "id": "custom.displayMode",
-                "value": "gradient-gauge"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge"
+                }
               },
               {
                 "id": "thresholds",
@@ -2484,6 +2675,15 @@
       },
       "id": 114,
       "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "showHeader": true,
         "sortBy": [
           {
@@ -2492,9 +2692,13 @@
           }
         ]
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "9.5.2",
       "targets": [
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [
             {
               "params": [
@@ -2569,6 +2773,10 @@
           ]
         },
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [
             {
               "params": [
@@ -2613,6 +2821,10 @@
           ]
         },
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "groupBy": [
             {
               "params": [
@@ -2657,9 +2869,6 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "",
       "transformations": [
         {
           "id": "seriesToColumns",
@@ -2701,7 +2910,10 @@
     },
     {
       "collapsed": true,
-      "datasource": null,
+      "datasource": {
+        "type": "influxdb",
+        "uid": "ZjswvQiRk"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2711,7 +2923,10 @@
       "id": 129,
       "panels": [
         {
-          "datasource": "${DS_INFLUXDB-SPEEDTESTS}",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_SPEEDFLUX}"
+          },
           "fieldConfig": {
             "defaults": {
               "custom": {
@@ -2723,8 +2938,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               }
@@ -2776,6 +2990,10 @@
           "pluginVersion": "7.3.6",
           "targets": [
             {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${DS_SPEEDFLUX}"
+              },
               "groupBy": [
                 {
                   "params": [
@@ -2817,6 +3035,10 @@
               ]
             },
             {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${DS_SPEEDFLUX}"
+              },
               "groupBy": [
                 {
                   "params": [
@@ -2856,6 +3078,10 @@
               ]
             },
             {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${DS_SPEEDFLUX}"
+              },
               "groupBy": [
                 {
                   "params": [
@@ -2910,8 +3136,6 @@
               ]
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "All Raw",
           "transformations": [
             {
@@ -2942,22 +3166,32 @@
           "type": "table"
         }
       ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "ZjswvQiRk"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Raw Results & Links",
       "type": "row"
     }
   ],
-  "refresh": false,
-  "schemaVersion": 26,
+  "refresh": "",
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
-        "allValue": null,
         "current": {},
-        "datasource": "${DS_INFLUXDB-SPEEDTESTS}",
+        "datasource": {
+          "type": "influxdb",
+          "uid": "${DS_SPEEDFLUX}"
+        },
         "definition": "",
-        "error": null,
         "hide": 1,
         "includeAll": false,
         "label": "namespace",
@@ -2970,7 +3204,6 @@
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
@@ -2996,7 +3229,8 @@
     ]
   },
   "timezone": "",
-  "title": "SpeedTests",
-  "uid": "kLXTiedGz",
-  "version": 38
+  "title": "SpeedTests by SpeedFlux (Evolution)",
+  "uid": "Sp33dFlux3v0",
+  "version": 1,
+  "weekStart": ""
 }
