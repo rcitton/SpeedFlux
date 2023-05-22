@@ -12,10 +12,10 @@ _CONFIG_DEFAULTS = {
     'INFLUX_DB_PASSWORD': (str, 'Database', None),
     'INFLUX_DB_DATABASE': (str, 'Database', 'speedtests'),
     'INFLUX_DB_TAGS': (str, 'Database', None),
-    'SPEEDTEST_INTERVAL': (int, 'SpeedTest', 180),
+    'SPEEDTEST_INTERVAL': (int, 'SpeedTest', 30),
     'SPEEDTEST_SERVER_ID': (str, 'SpeedTest', None),
     'PING_TARGETS': (str, 'PingTest', '1.1.1.1, 8.8.8.8'),
-    'PING_INTERVAL': (int, 'PingTest', 120),
+    'PING_INTERVAL': (int, 'PingTest', 5),
     'LOG_TYPE': (str, 'Logs', 'info'),
 }
 
